@@ -7,7 +7,6 @@ import {
   PrimitiveMesh,
   Script,
   SpotLight,
-  SystemInfo,
   Vector3,
   WebGLEngine
 } from "oasis-engine";
@@ -41,8 +40,8 @@ class LookAtFocus extends Script {
 
 //-- create engine object
 const engine = new WebGLEngine("o3-demo");
-engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
-engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
+engine.canvas.resizeByClientSize();
+
 const scene = engine.sceneManager.activeScene;
 const rootEntity = scene.createRootEntity();
 
@@ -68,7 +67,6 @@ light1.addComponent(LookAtFocus);
 
 let spotLight = light1.addComponent(SpotLight);
 spotLight.angle = Math.PI / 12;
-spotLight.penumbra = 2;
 spotLight["enableShadow"] = true;
 spotLight["shadow"].bias = 0.0001;
 spotLight["shadow"].intensity = 0.2;

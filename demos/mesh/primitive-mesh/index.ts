@@ -3,6 +3,7 @@ import {
   AssetType,
   BlinnPhongMaterial,
   Camera,
+  Color,
   DirectLight,
   Entity,
   Material,
@@ -10,7 +11,6 @@ import {
   ModelMesh,
   PrimitiveMesh,
   Script,
-  SystemInfo,
   Texture2D,
   Vector3,
   WebGLEngine
@@ -21,11 +21,12 @@ init();
 function init(): void {
   // Create engine
   const engine = new WebGLEngine("o3-demo");
-  engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
-  engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
+  engine.canvas.resizeByClientSize();
 
   // Create root entity
-  const rootEntity = engine.sceneManager.activeScene.createRootEntity();
+  const scene = engine.sceneManager.activeScene;
+  const rootEntity = scene.createRootEntity();
+  scene.ambientLight.diffuseSolidColor = new Color(0.6, 0.6, 0.6);
 
   // Create camera
   const cameraEntity = rootEntity.createChild("Camera");
@@ -36,7 +37,7 @@ function init(): void {
   // Create direct light
   const lightEntity = rootEntity.createChild("DirectLight");
   const light = lightEntity.addComponent(DirectLight);
-  light.intensity = 0.3;
+  light.intensity = 0.6;
 
   engine.resourceManager
     .load<Texture2D>({
@@ -50,8 +51,7 @@ function init(): void {
 
       // Create material
       const material = new BlinnPhongMaterial(engine);
-      material.emissiveTexture = texture;
-      material.emissiveColor.setValue(1, 1, 1, 1);
+      material.baseTexture = texture;
 
       for (let i = 0; i < 3; i++) {
         const posX = (i - 1) * distanceX;

@@ -15,9 +15,12 @@
     "demos": [
       { "src": "sprite-renderer", "label": "精灵渲染器" },
       { "src": "sprite-flip", "label": "精灵翻转" },
-      { "src": "sprite-material", "label": "精灵自定义材质" },
       { "src": "sprite-color", "label": "精灵颜色" },
+      { "src": "sprite-region", "label": "精灵设置区域显示" },
+      { "src": "sprite-pivot", "label": "精灵枢纽点" },
       { "src": "sprite-sheetAnimation", "label": "精灵帧动画" },
+      { "src": "sprite-mask", "label": "精灵遮罩" },
+      { "src": "sprite-material-blur", "label": "精灵自定义材质-高斯模糊" },
       { "src": "sprite-material-dissolve", "label": "精灵自定义材质-溶解" }
     ]
   },
@@ -38,7 +41,8 @@
       { "src": "tiling-offset", "label": "纹理的缩放偏移" },
       { "src": "pbr", "label": "PBR 材质" },
       { "src": "pbr-base", "label": "PBR-基本" },
-      { "src": "shader-water", "label": "自定义材质-水" }
+      { "src": "shader-water", "label": "自定义材质-水" },
+      { "src": "blinn-phong", "label": "Blinn-Phong Material" }
     ]
   },
   { "group": "纹理", "src": "texture", "demos": [{ "src": "video-texture", "label": "视频纹理" }] },
@@ -64,7 +68,9 @@
     "src": "advance",
     "demos": [
       { "src": "framebuffer-picker", "label": "帧拾取" },
-      { "src": "probe-reflection", "label": "环境反射探针" }
+      { "src": "probe-reflection", "label": "环境反射探针" },
+      { "src": "gltf-loader", "label": "GLTF Loader" }
     ]
-  }
+  },
+  { "group": "性能", "src": "performance", "demos": [{ "src": "animation", "label": "动画" }] }
 ]

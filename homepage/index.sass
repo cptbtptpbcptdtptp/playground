@@ -33,8 +33,14 @@ a
         padding: $header-padding $container-gap
         .logo
             height: $header-height - 2 * $header-padding
-        img
-            height: 100%
+            display: flex
+            align-items: center
+            img
+                height: 100%
+            span
+                font-weight: bold
+                padding-left: 10px
+                font-size: 1.2em
     .search-bar
         position: absolute
         top: $header-height

@@ -1,10 +1,9 @@
 // import { OrbitControl } from "@oasis-engine/controls";
-import { AssetType, Camera, Color, ParticleRenderer, SystemInfo, Texture2D, Vector3, WebGLEngine } from "oasis-engine";
+import { AssetType, Camera, Color, ParticleRenderer, Texture2D, Vector3, WebGLEngine } from "oasis-engine";
 
 //-- create engine object
 const engine = new WebGLEngine("o3-demo");
-engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
-engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
+engine.canvas.resizeByClientSize();
 
 const scene = engine.sceneManager.activeScene;
 const rootEntity = scene.createRootEntity();

@@ -4,27 +4,18 @@ import {
   AssetType,
   Camera,
   Color,
-  EnvironmentMapLight,
   GLTFResource,
   LoadItem,
-  Logger,
-  SystemInfo,
   TextureCubeMap,
   Vector3,
-  WebGLEngine
+  WebGLEngine,
+  DiffuseMode
 } from "oasis-engine";
 
-Logger.enable();
-
 const engine = new WebGLEngine("o3-demo");
-engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
-engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
+engine.canvas.resizeByClientSize();
 const scene = engine.sceneManager.activeScene;
 const rootNode = scene.createRootEntity();
-//-- create engine object
-
-let envLightNode = rootNode.createChild("env_light");
-let envLight = envLightNode.addComponent(EnvironmentMapLight);
 
 //-- create camera
 let cameraNode = rootNode.createChild("camera_node");
@@ -33,7 +24,7 @@ const camera = cameraNode.addComponent(Camera);
 cameraNode.addComponent(OrbitControl);
 
 const resources: LoadItem[] = [
-  { url: "https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf" },
+  { url: "https://gw.alipayobjects.com/os/bmw-prod/150e44f6-7810-4c45-8029-3575d36aff30.gltf" },
   {
     urls: [
       "https://gw.alipayobjects.com/mdn/rms_7c464e/afts/img/A*Bk5FQKGOir4AAAAAAAAAAAAAARQnAQ",
@@ -70,8 +61,10 @@ engine.resourceManager.load(resources).then((res) => {
     }
   }
 
-  envLight.diffuseTexture = <TextureCubeMap>res[1];
-  envLight.specularTexture = <TextureCubeMap>res[2];
+  const ambientLight = scene.ambientLight;
+  ambientLight.diffuseMode = DiffuseMode.Texture;
+  ambientLight.diffuseTexture = <TextureCubeMap>res[1];
+  ambientLight.specularTexture = <TextureCubeMap>res[2];
 
   // framebuffer picker
   let lastMaterial;

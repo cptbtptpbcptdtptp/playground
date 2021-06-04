@@ -1,11 +1,11 @@
-import { Camera, Logger, SystemInfo, Vector3, WebGLEngine, Entity } from "oasis-engine";
 import { SpineAnimation } from "@oasis-engine/engine-spine";
+import { Camera, Entity, Logger, Vector3, WebGLEngine } from "oasis-engine";
 
 Logger.enable();
 
 const engine = new WebGLEngine("o3-demo");
-engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
-engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
+engine.canvas.resizeByClientSize();
+
 const scene = engine.sceneManager.activeScene;
 const rootEntity = scene.createRootEntity();
 

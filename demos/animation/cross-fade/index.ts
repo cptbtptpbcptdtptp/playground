@@ -1,30 +1,18 @@
 import { OrbitControl } from "@oasis-engine/controls";
 import * as dat from "dat.gui";
-import {
-  AmbientLight,
-  Animation,
-  Camera,
-  Color,
-  DirectLight,
-  GLTFResource,
-  SystemInfo,
-  WebGLEngine
-} from "oasis-engine";
+import { AmbientLight, Animation, Camera, Color, DirectLight, GLTFResource, WebGLEngine } from "oasis-engine";
 
 const gui = new dat.GUI();
 
 //-- create engine object
 const engine = new WebGLEngine("o3-demo");
-engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
-engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
+engine.canvas.resizeByClientSize();
 
 const scene = engine.sceneManager.activeScene;
 const rootEntity = scene.createRootEntity();
 const lightEntity = rootEntity.createChild("light");
 lightEntity.transform.rotate(0, 180, 0);
 
-const ambient = lightEntity.addComponent(AmbientLight);
-ambient.color = new Color(0.2, 0.2, 0.2, 1);
 const light = lightEntity.addComponent(DirectLight);
 light.color = new Color(0.8, 0.8, 0.8, 1.0);
 

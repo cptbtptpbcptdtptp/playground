@@ -1,4 +1,3 @@
-import { OrbitControl } from "@oasis-engine/controls";
 import {
   AssetType,
   BlendFactor,
@@ -11,7 +10,6 @@ import {
   Shader,
   Sprite,
   SpriteRenderer,
-  SystemInfo,
   Texture2D,
   TextureWrapMode,
   Vector2,
@@ -21,17 +19,15 @@ import {
 
 // Create engine object
 const engine = new WebGLEngine("o3-demo");
-engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
-engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
+engine.canvas.resizeByClientSize();
 
 const scene = engine.sceneManager.activeScene;
 const rootEntity = scene.createRootEntity();
 
 // Create camera
 const cameraEntity = rootEntity.createChild("Camera");
-cameraEntity.transform.position = new Vector3(0, 0, 50);
-cameraEntity.addComponent(Camera);
-cameraEntity.addComponent(OrbitControl);
+cameraEntity.transform.position = new Vector3(0, 0, 20);
+cameraEntity.addComponent(Camera).isOrthographic = true;
 
 engine.resourceManager
   .load<Texture2D>({
@@ -44,19 +40,18 @@ engine.resourceManager
     const spriteEntity = rootEntity.createChild("spriteBlur");
 
     spriteEntity.addComponent(SpriteRenderer).sprite = new Sprite(engine, texture);
-    spriteEntity.transform.setScale(4, 4, 4);
     // The blur algorithm will sample the edges of the texture.
     // Set the clamp warp mode to avoid mis-sampling caused by repeate warp mode.
     texture.wrapModeU = texture.wrapModeV = TextureWrapMode.Clamp;
 
     // Display normal
-    addCustomMaterialSpriteEntity(spriteEntity, -22.5, texSize, 0.0);
+    addCustomMaterialSpriteEntity(spriteEntity, -7.5, texSize, 0.0);
     // Display low blur
-    addCustomMaterialSpriteEntity(spriteEntity.clone(), -7.5, texSize, 1.0);
+    addCustomMaterialSpriteEntity(spriteEntity.clone(), -2.5, texSize, 1.0);
     // Display moderate blur
-    addCustomMaterialSpriteEntity(spriteEntity.clone(), 7.5, texSize, 2.0);
+    addCustomMaterialSpriteEntity(spriteEntity.clone(), 2.5, texSize, 2.0);
     // Display highly blur
-    addCustomMaterialSpriteEntity(spriteEntity.clone(), 22.5, texSize, 3.0);
+    addCustomMaterialSpriteEntity(spriteEntity.clone(), 7.5, texSize, 3.0);
   });
 
 engine.run();
@@ -108,7 +103,7 @@ const spriteFragmentShader = `
   precision mediump float;
   precision mediump int;
 
-  uniform sampler2D u_texture;
+  uniform sampler2D u_spriteTexture;
   uniform float u_blurSize;
   uniform vec2 u_texSize;
 
@@ -120,7 +115,7 @@ const spriteFragmentShader = `
   }
 
   void main() {
-    vec4 color = texture2D(u_texture, v_uv);
+    vec4 color = texture2D(u_spriteTexture, v_uv);
     const int mSize = 11;
     const int kSize = (mSize - 1) / 2;
     float kernel[mSize];
@@ -145,7 +140,7 @@ const spriteFragmentShader = `
     for (int i = -kSize; i <= kSize; ++i) {
       for (int j = -kSize; j <= kSize; ++j) {
         uv = v_uv.xy + vec2(float(i) * offsetX, float(j) * offsetY);
-        final_colour += kernel[kSize + j] * kernel[kSize + i] * texture2D(u_texture, uv).rgb;
+        final_colour += kernel[kSize + j] * kernel[kSize + i] * texture2D(u_spriteTexture, uv).rgb;
       }
     }
 
