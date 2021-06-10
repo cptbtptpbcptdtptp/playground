@@ -3,7 +3,7 @@ import "@oasis-engine/stats";
 import { Animation, AssetType, Camera, GLTFResource, PBRMaterial, Texture2D, WebGLEngine } from "oasis-engine";
 
 // Create engine object.
-const engine = new WebGLEngine("o3-demo");
+const engine = new WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 
 // Create root entity and get scene.
