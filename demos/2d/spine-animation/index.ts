@@ -1,5 +1,5 @@
-import { SpineAnimation } from "@oasis-engine/engine-spine";
-import { Camera, Entity, Logger, Vector3, WebGLEngine } from "oasis-engine";
+import { Camera, Logger, SystemInfo, Vector3, WebGLEngine, Entity } from "oasis-engine";
+import { SpineAnimation } from "@oasis-engine/spine";
 
 Logger.enable();
 
@@ -12,7 +12,7 @@ const rootEntity = scene.createRootEntity();
 // camera
 const cameraEntity = rootEntity.createChild("camera_node");
 const camera = cameraEntity.addComponent(Camera);
-cameraEntity.transform.position = new Vector3(0, 0, 70);
+cameraEntity.transform.position = new Vector3(0, 0, 60);
 
 engine.resourceManager
   .load({
@@ -24,8 +24,7 @@ engine.resourceManager
     rootEntity.addChild(spineEntity);
     const spineAnimation = spineEntity.getComponent(SpineAnimation);
     spineAnimation.state.setAnimation(0, "walk", true);
-    spineAnimation.skeleton.scaleX = 0.05;
-    spineAnimation.skeleton.scaleY = 0.05;
+    spineAnimation.scale = 0.05;
   });
 
 engine.run();

@@ -10,17 +10,25 @@
     ]
   },
   {
+    "group": "Scene",
+    "src": "scene",
+    "demos": [
+      { "src": "background", "label": "Scene Background" }
+    ]
+  },
+  {
     "group": "Camera",
     "src": "camera",
     "demos": [
       { "src": "culling-mask", "label": "Culling Mask" },
       { "src": "controls-free", "label": "Free Controls" },
-      { "src": "renderer-cull", "label": "Renderer Cull" }
+      { "src": "renderer-cull", "label": "Renderer Cull" },
+      { "src": "ortho-control", "label": "Ortho Controls" }
     ]
   },
   {
-    "group": "Sprite",
-    "src": "sprite",
+    "group": "2D",
+    "src": "2d",
     "demos": [
       { "src": "sprite-renderer", "label": "Sprite Renderer" },
       { "src": "sprite-flip", "label": "Sprite Flip" },
@@ -30,7 +38,9 @@
       { "src": "sprite-sheetAnimation", "label": "Sprite SheetAnimation" },
       { "src": "sprite-mask", "label": "Sprite Mask" },
       { "src": "sprite-material-blur", "label": "Sprite Material Blur" },
-      { "src": "sprite-material-dissolve", "label": "Sprite Material Dissolve" }
+      { "src": "sprite-material-dissolve", "label": "Sprite Material Dissolve" },
+      { "src": "spine-animation", "label": "Spine Animation" },
+      { "src": "lottie", "label": "Lottie Renderer" }
     ]
   },
   {
@@ -39,7 +49,8 @@
     "demos": [
       { "src": "buffer-mesh", "label": "Buffer Mesh" },
       { "src": "model-mesh", "label": "Model Mesh" },
-      { "src": "primitive-mesh", "label": "Primitive Mesh" }
+      { "src": "primitive-mesh", "label": "Primitive Mesh" },
+      { "src": "obj-loader", "label": "OBJ Loader Use Model Mesh" }
     ]
   },
   { "group": "Light", "src": "light", "demos": [{ "src": "spotlight-shadow", "label": "Spot Light" }] },
@@ -80,7 +91,6 @@
       { "src": "particle-sprite-sheet", "label": "Particle Sprite Sheet" }
     ]
   },
-  { "group": "Spine", "src": "spine", "demos": [{ "src": "spine-animation", "label": "Spine Animation" }] },
   {
     "group": "Advance",
     "src": "advance",
@@ -90,5 +100,12 @@
       { "src": "gltf-loader", "label": "GLTF Loader" }
     ]
   },
-  { "group": "Performance", "src": "performance", "demos": [{ "src": "animation", "label": "Animation" }] }
+  {
+    "group": "Benchmark",
+    "src": "benchmark",
+    "demos": [
+      { "src": "animation", "label": "Animation" },
+      { "src": "spine-performance", "label": "Spine" }
+    ]
+  }
 ]

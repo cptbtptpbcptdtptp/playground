@@ -1,14 +1,16 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-const websiteRelativePath = "../../oasis-engine-io/playground";
-const websiteAbsolutePath = path.join(__dirname, websiteRelativePath);
+const websiteAbsolutePath = path.join(__dirname, "../../oasis-engine-io/playground");
 const demoListPath = path.join(__dirname, "../demos/.demoList.json");
 const demoSrcPath = path.join(__dirname, "../demos");
 
 if (!fs.existsSync(websiteAbsolutePath)) {
   throw "path error, plase input correct website relative url";
 }
+
+// clear
+fs.removeSync(websiteAbsolutePath);
 
 const demoListJSON = fs.readJSONSync(demoListPath);
 
