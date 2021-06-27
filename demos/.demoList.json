@@ -40,7 +40,8 @@
       { "src": "sprite-material-blur", "label": "Sprite Material Blur" },
       { "src": "sprite-material-dissolve", "label": "Sprite Material Dissolve" },
       { "src": "spine-animation", "label": "Spine Animation" },
-      { "src": "lottie", "label": "Lottie Renderer" }
+      { "src": "lottie", "label": "Lottie Renderer" },
+      { "src": "flappy-bird", "label": "Flappy Bird" }
     ]
   },
   {
